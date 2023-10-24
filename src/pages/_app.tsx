@@ -5,14 +5,17 @@ import { type AppType } from "next/app";
 import { api } from "~/utils/api";
 
 import "~/styles/globals.css";
+import { Wrapper } from "~/components/Wrapper";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
   return (
-    <SessionProvider session={session}>
-      <Component {...pageProps} />
+    <SessionProvider session={session}> 
+      <Wrapper>  
+        <Component {...pageProps} />
+      </Wrapper> 
     </SessionProvider>
   );
 };

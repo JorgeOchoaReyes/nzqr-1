@@ -30,6 +30,10 @@ const config = {
         checksVoidReturn: { attributes: false },
       },
     ],
+    "semi": ["error", "always"],
+    "quotes": ["error", "double"],
+    "no-console": "warn",
+    "indent": ["error", 2],
   },
 };
 
