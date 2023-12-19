@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import React from "react";
 import { useRouter } from "next/router";
 import { signIn, signOut, useSession } from "next-auth/react";
@@ -19,8 +20,15 @@ const Navbar = ({ title }: NavbarProps) => {
       <div className="drawer-side">
         <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
         <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-          <li><a>Home</a></li>
-          <li><a>Settings</a></li>
+     
+          { 
+            sessionData ?
+              <>
+                <li><a href="/library" >Library</a></li>
+                <li><a href="/settings">Settings</a></li>
+              </> : 
+              <li><a href="/">Home</a></li>
+          }
         </ul>
       </div>
     </div>
@@ -31,7 +39,14 @@ const Navbar = ({ title }: NavbarProps) => {
         </label> 
       </div>
       <div className="navbar-center">
-        <a className="btn btn-ghost normal-case text-xl">{title}</a>
+        { 
+          sessionData ?
+            <>
+              <a href="/library" className="btn btn-ghost normal-case text-xl">Library</a>
+              <a href="/settings" className="btn btn-ghost normal-case text-xl">Settings</a>
+            </> : 
+            <a href="/" className="btn btn-ghost normal-case text-xl">Home</a>
+        }
       </div>
       <div className="navbar-end">
         {!sessionData &&
@@ -52,8 +67,25 @@ const Navbar = ({ title }: NavbarProps) => {
                   </div>
                 </label>
                 <ul tabIndex={0} className="menu dropdown-content z-[1]  shadow bg-base-100 rounded-box w-44 mt-4">
-                  <li><a>Homepage</a></li> 
-                  <li><button className="bg-warning" onClick={() => void signOut()}>
+                  { 
+                    sessionData ?
+                      <>
+                        <li><button onClick={(e) => {
+                          e.preventDefault();
+                          window.location.href = "/library";
+                        }}> Library </button> </li>
+                        <li><button onClick={(e) => {
+                          e.preventDefault();
+                          window.location.href = "/settings";
+                        }}> Settings </button> </li>
+                      </> :
+                   
+                      <a href="/" >Home</a>
+                  }
+                  <li><button className="bg-error" onClick={async () => {
+                    await signOut();
+                    router.push("/").catch(console.error);
+                  }}>
                       Sign out
                   </button></li>
                 </ul>
