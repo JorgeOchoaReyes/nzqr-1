@@ -24,7 +24,7 @@ const Navbar = ({ title }: NavbarProps) => {
           { 
             sessionData ?
               <>
-                <li><a href="/library" >Library</a></li>
+                <li><a href="/library" >Home</a></li>
                 <li><a href="/settings">Settings</a></li>
               </> : 
               <li><a href="/">Home</a></li>
@@ -42,7 +42,7 @@ const Navbar = ({ title }: NavbarProps) => {
         { 
           sessionData ?
             <>
-              <a href="/library" className="btn btn-ghost normal-case text-xl">Library</a>
+              <a href="/library" className="btn btn-ghost normal-case text-xl">Home</a>
               <a href="/settings" className="btn btn-ghost normal-case text-xl">Settings</a>
             </> : 
             <a href="/" className="btn btn-ghost normal-case text-xl">Home</a>
@@ -73,7 +73,7 @@ const Navbar = ({ title }: NavbarProps) => {
                         <li><button onClick={(e) => {
                           e.preventDefault();
                           window.location.href = "/library";
-                        }}> Library </button> </li>
+                        }}> Home </button> </li>
                         <li><button onClick={(e) => {
                           e.preventDefault();
                           window.location.href = "/settings";
