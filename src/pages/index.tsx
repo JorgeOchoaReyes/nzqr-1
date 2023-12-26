@@ -50,8 +50,6 @@ export default function Home() {
           Monitor, store historical data, and view daily updates on any website, for reviews, or other changes.
         </Typography>
 
- 
-
         <HoverButton onClick={async () => {
           await signIn();
         }} text="Get Started" sx={{
